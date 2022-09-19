@@ -1,12 +1,13 @@
 import * as Electron from 'electron';
 import { ElectronWindow } from './typings/electron.window';
 
+
 declare let window: ElectronWindow;
 
 export class ElectronService {
-    private _electron: Electron.RendererInterface;
+    private _electron: any;
 
-    private get electron(): Electron.RendererInterface {
+    private get electron(): any {
         if (!this._electron) {
             if (window && window.require) {
                 this._electron = window.require('electron');
@@ -56,7 +57,7 @@ export class ElectronService {
         return this.electron ? this.electron.ipcRenderer : null;
     }
 
-    public get remote(): Electron.Remote {
+    public get remote(): any {
         return this.electron ? this.electron.remote : null;
     }
 
